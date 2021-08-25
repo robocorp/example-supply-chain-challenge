@@ -7,7 +7,6 @@ This example robot completes the supply chain challenge at https://developer.aut
 ```robot
 *** Tasks ***
 Complete supply chain challenge
-    Open Browser
     ${procurement_website}=    Open procurement website
     Log in    ${procurement_website}
     ${po_website}=    Open purchase orders website
