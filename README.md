@@ -1,5 +1,7 @@
 # A robot that completes the supply chain challenge
 
+<img src="images/purchase-orders-web-app.png" style="margin-bottom:20px">
+
 This example robot completes the supply chain challenge at https://developer.automationanywhere.com/challenges/automationanywherelabs-supplychainmanagement.html.
 
 ```robot
