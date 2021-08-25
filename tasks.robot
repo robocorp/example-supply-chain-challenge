@@ -15,7 +15,6 @@ ${PURCHASE_ORDERS_URL}=    https://developer.automationanywhere.com/challenges/a
 
 *** Tasks ***
 Complete supply chain challenge
-    Open Browser
     ${procurement_website}=    Open procurement website
     Log in    ${procurement_website}
     ${po_website}=    Open purchase orders website
@@ -28,6 +27,7 @@ Complete supply chain challenge
 
 *** Keywords ***
 Open procurement website
+    New Context    userAgent=Chrome/92.0.4515.159
     ${procurement_website}=    New Page    ${PROCUREMENT_URL}
     Accept cookies
     [Return]    ${procurement_website}
@@ -126,4 +126,6 @@ Fill in purchase order
     Select Options By    css=#agent${index}    value    ${agent_name}
 
 Take a screenshot of the result
-    Take Screenshot    selector=css=.modal-content
+    Take Screenshot
+    ...    filename=${OUTPUT_DIR}${/}result.png
+    ...    selector=css=.modal-content
