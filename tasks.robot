@@ -4,7 +4,7 @@ Library           Collections
 Library           RPA.Browser.Playwright
 Library           RPA.Excel.Files
 Library           RPA.HTTP
-Library           RPA.Robocloud.Secrets
+Library           RPA.Robocorp.Vault
 Library           RPA.Tables
 Library           String
 
