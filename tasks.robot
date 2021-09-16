@@ -104,7 +104,7 @@ Complete purchase order
 Search purchase order
     [Arguments]    ${procurement_website}    ${po_number}
     Switch Page    ${procurement_website}
-    Fill Text    css=input    ${po_number}
+    Fill Text    css=#dtBasicExample_filter input    ${po_number}
 
 Get agent full name by state
     [Arguments]    ${agents}    ${state}
