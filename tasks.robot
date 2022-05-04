@@ -1,17 +1,20 @@
 *** Settings ***
-Documentation     Complete supply chain challenge.
-Library           Collections
-Library           RPA.Browser.Playwright
-Library           RPA.Excel.Files
-Library           RPA.HTTP
-Library           RPA.Robocorp.Vault
-Library           RPA.Tables
-Library           String
+Documentation       Complete supply chain challenge.
+
+Library             Collections
+Library             RPA.Browser.Playwright
+Library             RPA.Excel.Files
+Library             RPA.HTTP
+Library             RPA.Robocorp.Vault
+Library             RPA.Tables
+Library             String
+
 
 *** Variables ***
-${AGENT_EXCEL_PATH}=    ${OUTPUT_DIR}${/}agents.xlsx
-${PROCUREMENT_URL}=    https://developer.automationanywhere.com/challenges/AutomationAnywhereLabs-POTrackingLogin.html
-${PURCHASE_ORDERS_URL}=    https://developer.automationanywhere.com/challenges/automationanywherelabs-supplychainmanagement.html
+${AGENT_EXCEL_PATH}=        ${OUTPUT_DIR}${/}agents.xlsx
+${PROCUREMENT_URL}=         https://developer.automationanywhere.com/challenges/AutomationAnywhereLabs-POTrackingLogin.html
+${PURCHASE_ORDERS_URL}=     https://developer.automationanywhere.com/challenges/automationanywherelabs-supplychainmanagement.html
+
 
 *** Tasks ***
 Complete supply chain challenge
@@ -25,19 +28,20 @@ Complete supply chain challenge
     ...    ${po_website}
     Take a screenshot of the result
 
+
 *** Keywords ***
 Open procurement website
     New Context    userAgent=Chrome/92.0.4515.159
     ${procurement_website}=    New Page    ${PROCUREMENT_URL}
     Accept cookies
-    [Return]    ${procurement_website}
+    RETURN    ${procurement_website}
 
 Accept cookies
     Click    css=#onetrust-accept-btn-handler    noWaitAfter=True
 
 Open purchase orders website
     ${po_website}=    New Page    ${PURCHASE_ORDERS_URL}
-    [Return]    ${po_website}
+    RETURN    ${po_website}
 
 Log in
     [Arguments]    ${procurement_website}
@@ -55,7 +59,7 @@ Get agents
     Open Workbook    ${AGENT_EXCEL_PATH}
     ${agents}=    Read Worksheet As Table
     Close Workbook
-    [Return]    ${agents}
+    RETURN    ${agents}
 
 Fill in purchase orders
     [Arguments]    ${agents}    ${procurement_website}    ${po_website}
@@ -79,7 +83,7 @@ Get purchase order numbers
         ${po_number}=    Get Text    css=#${id}
         Append To List    ${po_numbers}    ${po_number}
     END
-    [Return]    ${po_numbers}
+    RETURN    ${po_numbers}
 
 Complete purchase order
     [Arguments]
@@ -111,7 +115,7 @@ Get agent full name by state
     ${rows}=    Find Table Rows    ${agents}    0    ==    ${state}
     ${row}=    Get Table Row    ${rows}    ${0}
     ${agent_name}=    Set Variable    ${row}[B]
-    [Return]    ${agent_name}
+    RETURN    ${agent_name}
 
 Fill in purchase order
     [Arguments]
